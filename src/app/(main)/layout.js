@@ -1,11 +1,13 @@
+import Footer from "@/components/home/footer/Footer";
 import Navbar from "@/components/home/navbar/Navbar";
 
 const MainLayout = ({ children }) => {
 	return (
-		<div>
+		<>
 			<Navbar></Navbar>
 			<>{children}</>
-		</div>
+			<Footer></Footer>
+		</>
 	);
 };
 
