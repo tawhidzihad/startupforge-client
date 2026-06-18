@@ -26,14 +26,14 @@ export default function Navbar() {
 				</Link>
 
 				{/* Desktop Menu */}
-				<nav className="hidden items-center gap-2 md:flex">
+				<nav className="hidden items-center gap-2 lg:flex">
 					{navLinks.map((link) => (
 						<NavButton key={link.href} {...link} />
 					))}
 				</nav>
 
 				{/* Desktop Right */}
-				<div className="hidden items-center gap-4 md:flex">
+				<div className="hidden items-center gap-4 lg:flex">
 					<ThemeToggle />
 
 					<motion.div whileHover={{ y: -1 }} whileTap={{ scale: 0.98 }}>
@@ -60,7 +60,7 @@ export default function Navbar() {
 				</div>
 
 				{/* Mobile */}
-				<div className="md:hidden">
+				<div className="lg:hidden">
 					<ThemeToggle />
 					<MobileMenu />
 				</div>
