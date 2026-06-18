@@ -1,5 +1,11 @@
+import BrowseOpportunitiesPage from "@/components/opportunityPage/BrowseOpportunitiesPage";
+
 const OpportunitiesPage = () => {
-	return <div>opportunities</div>;
+	return (
+		<>
+			<BrowseOpportunitiesPage></BrowseOpportunitiesPage>
+		</>
+	);
 };
 
 export default OpportunitiesPage;

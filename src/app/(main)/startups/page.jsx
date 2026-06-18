@@ -1,11 +1,11 @@
-import React from 'react';
+import BrowseStartupsPage from "@/components/startupPage/BrowseStartupsPage";
 
 const StartupsPage = () => {
-   return (
-      <div>
-         StartupsPage
-      </div>
-   );
+	return (
+		<>
+			<BrowseStartupsPage></BrowseStartupsPage>
+		</>
+	);
 };
 
 export default StartupsPage;

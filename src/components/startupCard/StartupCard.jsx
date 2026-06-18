@@ -23,8 +23,19 @@ export default function StartupCard({ startup }) {
 			{/* Top */}
 			<div className="p-6">
 				<div className="mb-5 flex items-center gap-4">
-					<div className=" relative h-14 w-14 overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-700">
-						<Image src={logo} alt={name} fill className="object-cover" />
+					<div className=" relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800">
+						{logo ? (
+							<Image
+								src={logo}
+								alt={name}
+								fill
+								className="object-cover"
+							/>
+						) : (
+							<div className=" flex h-full w-full items-center justify-center bg-linear-to-r from-indigo-500 to-violet-500 text-lg font-bold text-white">
+								{name?.charAt(0)?.toUpperCase()}
+							</div>
+						)}
 					</div>
 
 					<div>
