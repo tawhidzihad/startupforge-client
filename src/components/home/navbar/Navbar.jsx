@@ -38,7 +38,7 @@ export default function Navbar() {
 
 					<motion.div whileHover={{ y: -1 }} whileTap={{ scale: 0.98 }}>
 						<Link
-							href="/login"
+							href="/signin"
 							className=" inline-flex h-10 items-center justify-center rounded bg-linear-to-r from-indigo-500 to-violet-600 px-4 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:shadow-lg"
 						>
 							Login
@@ -47,7 +47,7 @@ export default function Navbar() {
 
 					<motion.div whileHover={{ y: -1 }} whileTap={{ scale: 0.98 }}>
 						<Link
-							href="/login"
+							href="/signup"
 							className=" inline-flex h-10 items-center justify-center gap-2 rounded bg-linear-to-r from-indigo-500 to-violet-500 px-4 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:shadow-lg"
 						>
 							Get Started
