@@ -23,7 +23,7 @@ export default function ThemeToggle() {
 			whileTap={{ scale: 0.9 }}
 			whileHover={{ scale: 1.05 }}
 			onClick={() => setTheme(isDark ? "light" : "dark")}
-			className={` relative overflow-hidden rounded-full border p-2 transition-colors duration-300
+			className={`cursor-pointer relative overflow-hidden rounded-full border p-2 transition-colors duration-300
 				${isDark ? "border-zinc-700" : "border-zinc-300"}`}
 			aria-label="Toggle Theme"
 		>
@@ -50,9 +50,9 @@ export default function ThemeToggle() {
 					}}
 				>
 					{isDark ? (
-						<Sun className="h-5 w-5 text-yellow-500" />
+						<Sun className="h-6 w-6 text-yellow-500" />
 					) : (
-						<Moon className="h-5 w-5 text-violet-500" />
+						<Moon className="h-6 w-6 text-violet-500" />
 					)}
 				</motion.div>
 			</AnimatePresence>
