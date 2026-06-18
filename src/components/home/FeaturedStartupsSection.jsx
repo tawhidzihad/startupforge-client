@@ -10,7 +10,7 @@ const startups = [
 	{
 		id: "1",
 		name: "StartupForge",
-		logo: "/startup-1.png",
+		logo: null,
 		founderName: "Tawhid Zihad",
 		industry: "SaaS",
 		teamSizeNeeded: 5,
@@ -18,7 +18,7 @@ const startups = [
 	{
 		id: "2",
 		name: "HireLoop",
-		logo: "/startup-2.png",
+		logo: null,
 		founderName: "John Doe",
 		industry: "HR Tech",
 		teamSizeNeeded: 3,
@@ -26,7 +26,7 @@ const startups = [
 	{
 		id: "3",
 		name: "EcoTrack",
-		logo: "/startup-3.png",
+		logo: null,
 		founderName: "Sarah Smith",
 		industry: "Green Tech",
 		teamSizeNeeded: 4,

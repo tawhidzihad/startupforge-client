@@ -5,8 +5,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { uploadImageToImgbb } from "@/lib/actions/imageUploader";
+import { authClient } from "@/lib/auth-client";
 import { Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 export default function SignupForm() {
@@ -30,7 +33,7 @@ export default function SignupForm() {
 	});
 
 	const password = watch("password") || "";
-	const hasMinLength = password.length >= 6;
+	const hasMinLength = password.length >= 8;
 	const hasUppercase = /[A-Z]/.test(password);
 	const hasLowercase = /[a-z]/.test(password);
 
@@ -44,13 +47,25 @@ export default function SignupForm() {
 		}
 	};
 
-	const onSubmit = async (data) => {
-		const payload = {
-			...data,
-			imageUrl,
-		};
+	// Register button handler
+	const onSubmit = async (formData) => {
+		const { data, error } = await authClient.signUp.email({
+			name: formData.name,
+			email: formData.email,
+			role: formData.role,
+			password: formData.password,
+			image: imageUrl,
+		});
 
-		console.log(payload);
+		if (error) {
+			toast.error(error.message);
+			return;
+		}
+
+		if (data) {
+			toast.success("Your account has been created successfully!");
+			redirect("/signin");
+		}
 	};
 
 	return (
@@ -168,19 +183,7 @@ export default function SignupForm() {
 					<div>
 						<label className="mb-2 block text-sm font-medium">Role</label>
 						<div className="flex items-center gap-6">
-							<label className="flex cursor-pointer items-center gap-2">
-								<input
-									type="radio"
-									value="founder"
-									{...register("role", {
-										required: "Please select a role",
-									})}
-									className=" h-5 w-5 accent-violet-500"
-								/>
-
-								<span className="font-medium">Founder</span>
-							</label>
-
+							{/* collaborator */}
 							<label className="flex cursor-pointer items-center gap-2">
 								<input
 									type="radio"
@@ -192,6 +195,20 @@ export default function SignupForm() {
 								/>
 
 								<span className="font-medium">Collaborator</span>
+							</label>
+
+							{/* Founder */}
+							<label className="flex cursor-pointer items-center gap-2">
+								<input
+									type="radio"
+									value="founder"
+									{...register("role", {
+										required: "Please select a role",
+									})}
+									className=" h-5 w-5 accent-violet-500"
+								/>
+
+								<span className="font-medium">Founder</span>
 							</label>
 						</div>
 
@@ -215,8 +232,8 @@ export default function SignupForm() {
 								{...register("password", {
 									required: "Password is required",
 									minLength: {
-										value: 6,
-										message: "Minimum 6 characters required",
+										value: 8,
+										message: "Minimum 8 characters required",
 									},
 								})}
 								className="bg-white dark:bg-zinc-900 h-12 w-full rounded-xl px-4 pr-12 outline-none transition-all focus:ring-4 focus:ring-violet-500"
@@ -249,7 +266,7 @@ export default function SignupForm() {
 								hasMinLength ? "text-green-500" : "text-zinc-500"
 							}
 						>
-							✓ Minimum 6 characters
+							✓ Minimum 8 characters
 						</p>
 
 						<p
@@ -309,6 +326,7 @@ export default function SignupForm() {
 						)}
 					</div>
 
+					{/* Sign up button */}
 					<button
 						type="submit"
 						disabled={isSubmitting}
@@ -324,6 +342,7 @@ export default function SignupForm() {
 					<div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
 				</div>
 
+				{/* Google Login */}
 				<button
 					type="button"
 					className=" flex h-12 w-full items-center justify-center gap-3 rounded-xl border border-zinc-200 font-medium transition-all hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900"
@@ -332,6 +351,7 @@ export default function SignupForm() {
 					Continue with Google
 				</button>
 
+				{/* Create account */}
 				<p className="mt-6 text-center text-sm text-zinc-500">
 					Already have an account?{" "}
 					<Link
