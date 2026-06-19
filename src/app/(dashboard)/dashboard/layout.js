@@ -16,7 +16,7 @@ export default async function MainDashboardLayout({ children }) {
 		{
 			id: 2,
 			label: "My Startup",
-			href: "/dashboard/founder/my-startup",
+			href: "/dashboard/founder/startup",
 			icon: "startup",
 		},
 		{
