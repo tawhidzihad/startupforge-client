@@ -28,8 +28,9 @@ export default async function DashboardSidebar({ navItems, user }) {
 							<Image
 								src={user?.image}
 								alt={user?.name}
-								fill
-								className="object-cover"
+								width={1000}
+								height={1000}
+								className="h-full w-full object-cover"
 							/>
 						) : (
 							<div className="flex h-full w-full items-center justify-center bg-linear-to-r from-indigo-500 to-violet-500 text-lg font-semibold text-white">

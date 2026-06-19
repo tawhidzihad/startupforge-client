@@ -50,10 +50,11 @@ export default function MobileSidebar({ navItems, user }) {
 										<div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800">
 											{user?.image ? (
 												<Image
-													src={user.image}
-													alt={user.name}
-													fill
-													className="object-cover"
+													src={user?.image}
+													alt={user?.name}
+													width={1000}
+													height={1000}
+													className="h-full w-full object-cover"
 												/>
 											) : (
 												<div className="flex h-full w-full items-center justify-center bg-linear-to-r from-indigo-500 to-violet-500 text-lg font-semibold text-white">

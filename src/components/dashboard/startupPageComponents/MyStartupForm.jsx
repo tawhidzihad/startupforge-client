@@ -5,7 +5,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { uploadImageToImgbb } from "@/lib/actions/imageUploader";
-import { createStartup } from "@/lib/actions/startups";
+import { createStartup, updateStartup } from "@/lib/actions/startups";
+import toast from "react-hot-toast";
 
 const industries = [
 	"SaaS",
@@ -30,7 +31,7 @@ const fundingStages = [
 	"Bootstrapped",
 ];
 
-export default function MyStartupForm({ user, startupData }) {
+export default function MyStartupForm({ user, startupData, onSuccess }) {
 	const [logoUrl, setLogoUrl] = useState(startupData?.logo || null);
 
 	const {
@@ -60,9 +61,21 @@ export default function MyStartupForm({ user, startupData }) {
 			founderEmail: user?.email,
 		};
 
-		const data = await createStartup(payload);
+		if (!startupData) {
+			const data = await createStartup(payload);
+			if (data.insertedId) {
+				toast.success("Startup created successfully!");
+				onSuccess?.();
+			}
+		}
 
-		console.log(data);
+		if (startupData) {
+			const data = await updateStartup(startupData?._id, payload);
+			if (data.modifiedCount) {
+				toast.success("Startup updated successfully!");
+				onSuccess?.();
+			}
+		}
 	};
 
 	return (
