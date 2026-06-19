@@ -54,7 +54,9 @@ export default function SignupForm() {
 			email: formData.email,
 			role: formData.role,
 			password: formData.password,
-			image: imageUrl,
+			...(imageUrl && {
+				image: imageUrl,
+			}),
 		});
 
 		if (error) {
@@ -172,16 +174,9 @@ export default function SignupForm() {
 									id="profile-image"
 									type="file"
 									accept="image/*"
-									{...register("image")}
 									onChange={handleImageChange}
 									className="hidden"
 								/>
-
-								{watch("image")?.[0] && (
-									<p className="mt-2 text-xs text-zinc-500">
-										{watch("image")[0].name}
-									</p>
-								)}
 							</div>
 						</div>
 					</div>

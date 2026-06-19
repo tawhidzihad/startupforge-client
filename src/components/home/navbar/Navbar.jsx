@@ -11,7 +11,6 @@ import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import MobileMenu from "./MobileMenu";
-import { navLinks } from "./navLinks";
 
 export default function Navbar() {
 	const router = useRouter();
@@ -45,9 +44,19 @@ export default function Navbar() {
 
 				{/* Desktop Menu */}
 				<nav className="hidden items-center gap-2 lg:flex">
-					{navLinks.map((link) => (
-						<NavButton key={link.href} {...link} />
-					))}
+					<NavButton label={"Home"} href={"/"} />
+					<NavButton label={"Browse Startups"} href={"/startups"} />
+					<NavButton
+						label={"Browse Opportunities"}
+						href={"/opportunities"}
+					/>
+
+					{user && (
+						<NavButton
+							label={"Dashboard"}
+							href={`${user?.role === "founder" ? "/dashboard/founder" : user?.role === "collaborator" ? "/dashboard/collaborator" : user?.role === "admin" && "/dashboard/admin"}`}
+						/>
+					)}
 				</nav>
 
 				{/* Desktop Right */}

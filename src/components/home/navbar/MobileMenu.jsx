@@ -8,7 +8,6 @@ import { useState } from "react";
 
 import Image from "next/image";
 import MobileNavItem from "./MobileNavItem";
-import { navLinks } from "./navLinks";
 
 export default function MobileMenu({ user, isPending, handleLogOutButton }) {
 	const [open, setOpen] = useState(false);
@@ -22,9 +21,19 @@ export default function MobileMenu({ user, isPending, handleLogOutButton }) {
 			{open && (
 				<div className=" absolute left-0 top-20 w-full border-b border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950 lg:hidden">
 					<div className="space-y-2">
-						{navLinks.map((link) => (
-							<MobileNavItem key={link.href} {...link} />
-						))}
+						<MobileNavItem label={"Home"} href={"/"} />
+						<MobileNavItem label={"Browse Startups"} href={"/startups"} />
+						<MobileNavItem
+							label={"Browse Opportunities"}
+							href={"/opportunities"}
+						/>
+
+						{user && (
+							<MobileNavItem
+								label={"Dashboard"}
+								href={`${user?.role === "founder" ? "/dashboard/founder" : user?.role === "collaborator" ? "/dashboard/collaborator" : user?.role === "admin" && "/dashboard/admin"}`}
+							/>
+						)}
 					</div>
 
 					<div className="mt-6 flex items-center justify-between">
