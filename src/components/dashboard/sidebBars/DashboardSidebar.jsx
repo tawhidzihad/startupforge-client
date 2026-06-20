@@ -1,9 +1,27 @@
+"use client";
+
+import { authClient } from "@/lib/auth-client";
 import SidebarLink from "@/UI/SidebarLink";
 import { House, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
-export default async function DashboardSidebar({ navItems, user }) {
+export default function DashboardSidebar({ navItems, user }) {
+	const router = useRouter();
+
+	const handleLogOutButton = async () => {
+		await authClient.signOut({
+			fetchOptions: {
+				onSuccess: () => {
+					toast.success("You have been logged out successfully.");
+					router.push("/");
+				},
+			},
+		});
+	};
+
 	return (
 		<aside className=" fixed left-0 top-0 hidden h-screen w-72 border-r bg-background lg:flex lg:flex-col">
 			{/* Logo */}
@@ -78,7 +96,10 @@ export default async function DashboardSidebar({ navItems, user }) {
 						Back To Home
 					</Link>
 
-					<button className=" flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-red-500 hover:bg-red-500/10">
+					<button
+						onClick={handleLogOutButton}
+						className="cursor-pointer flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-red-500 hover:bg-red-500/10"
+					>
 						<LogOut size={18} />
 						Logout
 					</button>

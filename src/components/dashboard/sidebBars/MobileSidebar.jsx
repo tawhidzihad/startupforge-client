@@ -5,12 +5,27 @@ import { useState } from "react";
 
 import { Button, Drawer } from "@heroui/react";
 
+import { authClient } from "@/lib/auth-client";
 import SidebarLink from "@/UI/SidebarLink";
 import { House, LogOut, Menu, X } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function MobileSidebar({ navItems, user }) {
 	const [open, setOpen] = useState(false);
+	const router = useRouter();
+
+	const handleLogOutButton = async () => {
+		await authClient.signOut({
+			fetchOptions: {
+				onSuccess: () => {
+					toast.success("You have been logged out successfully.");
+					router.push("/");
+				},
+			},
+		});
+	};
 
 	return (
 		<>
@@ -108,8 +123,9 @@ export default function MobileSidebar({ navItems, user }) {
 									</Link>
 
 									<button
+										onClick={handleLogOutButton}
 										type="button"
-										className=" flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-red-500 hover:bg-red-500/10"
+										className="cursor-pointer flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-red-500 hover:bg-red-500/10"
 									>
 										<LogOut size={18} />
 										Logout

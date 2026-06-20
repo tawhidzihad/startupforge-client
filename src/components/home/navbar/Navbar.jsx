@@ -39,6 +39,7 @@ export default function Navbar() {
 						width={10000}
 						height={10000}
 						className="w-auto h-12"
+						loading="eager"
 					/>
 				</Link>
 

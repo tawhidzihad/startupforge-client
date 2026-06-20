@@ -3,11 +3,13 @@ const baseApiUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 // Server Mutation For Create Update & Delete
 export const serverMutation = async (path, method, data) => {
 	const res = await fetch(`${baseApiUrl}${path}`, {
-		method: method,
+		method,
 		headers: {
 			"content-type": "application/json",
 		},
-		body: data && JSON.stringify(data),
+		...(data && {
+			body: JSON.stringify(data),
+		}),
 	});
 
 	return res.json();

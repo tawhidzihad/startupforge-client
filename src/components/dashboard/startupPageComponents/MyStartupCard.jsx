@@ -3,11 +3,27 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 
-import { Building2, Mail, Pencil, Trash2, TrendingUp } from "lucide-react";
+import {
+	Building2,
+	CheckCircle2,
+	Clock3,
+	Mail,
+	Pencil,
+	Trash2,
+	TrendingUp,
+	XCircle,
+} from "lucide-react";
 
 export default function MyStartupCard({ startup, onEdit, onDelete }) {
-	const { name, logo, industry, description, fundingStage, founderEmail } =
-		startup;
+	const {
+		name,
+		logo,
+		industry,
+		description,
+		fundingStage,
+		founderEmail,
+		status,
+	} = startup;
 
 	return (
 		<motion.div
@@ -19,7 +35,7 @@ export default function MyStartupCard({ startup, onEdit, onDelete }) {
 				opacity: 1,
 				y: 0,
 			}}
-			className=" overflow-hidden rounded-3xl border border-zinc-200 bg-background shadow-sm dark:border-zinc-800"
+			className="mx-auto max-w-7xl lg:mt-15 overflow-hidden rounded-3xl border border-zinc-200 bg-background shadow-sm dark:border-zinc-800"
 		>
 			{/* Cover */}
 			<div className="h-28 bg-linear-to-r from-indigo-200 via-violet-300 to-fuchsia-300" />
@@ -46,7 +62,32 @@ export default function MyStartupCard({ startup, onEdit, onDelete }) {
 
 				{/* Startup Info */}
 				<div className="mt-4">
-					<h2 className="text-3xl font-bold">{name}</h2>
+					<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+						<h2 className="text-3xl font-bold">{name}</h2>
+
+						<div>
+							{status === "approved" && (
+								<div className="inline-flex items-center gap-2 rounded-full bg-green-500/10 px-4 py-2 text-sm font-medium text-green-500">
+									<CheckCircle2 size={16} />
+									Approved
+								</div>
+							)}
+
+							{status === "pending" && (
+								<div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-4 py-2 text-sm font-medium text-amber-500">
+									<Clock3 size={16} />
+									Pending Review
+								</div>
+							)}
+
+							{status === "rejected" && (
+								<div className="inline-flex items-center gap-2 rounded-full bg-red-500/10 px-4 py-2 text-sm font-medium text-red-500">
+									<XCircle size={16} />
+									Rejected
+								</div>
+							)}
+						</div>
+					</div>
 
 					<div className="mt-4 flex flex-wrap gap-2">
 						<span className="rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-500">
@@ -91,6 +132,17 @@ export default function MyStartupCard({ startup, onEdit, onDelete }) {
 						</div>
 					</div>
 				</div>
+
+				{/* Pending Aleart */}
+				{status === "pending" && (
+					<div className="mt-6 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4">
+						<p className="text-sm leading-6 text-amber-600 dark:text-amber-400">
+							Your startup is currently under review by the admin team.
+							Approval is required before posting opportunities and
+							accessing all founder features.
+						</p>
+					</div>
+				)}
 
 				{/* Description */}
 				<div className="mt-6">

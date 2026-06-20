@@ -59,6 +59,7 @@ export default function MyStartupForm({ user, startupData, onSuccess }) {
 			...formData,
 			logo: logoUrl,
 			founderEmail: user?.email,
+			status: "pending",
 		};
 
 		if (!startupData) {
@@ -79,7 +80,7 @@ export default function MyStartupForm({ user, startupData, onSuccess }) {
 	};
 
 	return (
-		<div className="mx-auto max-w-7xl">
+		<div className="mx-auto max-w-7xl lg:pt-5">
 			<div className="rounded-3xl border border-zinc-200 bg-background p-7 shadow-sm dark:border-zinc-800">
 				<div className="mb-8">
 					<h1 className="text-3xl font-bold">
