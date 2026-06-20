@@ -17,6 +17,6 @@ export const serverMutation = async (path, method, data) => {
 
 // UnProtected Server Data Fetch
 export const serverFetch = async (path) => {
-	const res = await fetch(`${baseApiUrl}${path}`);
+	const res = await fetch(`${baseApiUrl}${path}`, { cache: "no-cache" });
 	return res.json();
 };

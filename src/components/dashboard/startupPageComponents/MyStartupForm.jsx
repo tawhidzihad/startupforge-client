@@ -40,7 +40,7 @@ export default function MyStartupForm({ user, startupData, onSuccess }) {
 		formState: { errors, isSubmitting },
 	} = useForm({
 		defaultValues: {
-			name: startupData?.name || "",
+			startupName: startupData?.name || "",
 			industry: startupData?.industry || "",
 			description: startupData?.description || "",
 			fundingStage: startupData?.fundingStage || "",
@@ -60,6 +60,7 @@ export default function MyStartupForm({ user, startupData, onSuccess }) {
 			logo: logoUrl,
 			founderEmail: user?.email,
 			status: "pending",
+			founderName: user?.name,
 		};
 
 		if (!startupData) {
@@ -101,15 +102,15 @@ export default function MyStartupForm({ user, startupData, onSuccess }) {
 						<input
 							type="text"
 							placeholder="StartupForge"
-							{...register("name", {
+							{...register("startupName", {
 								required: "Startup name is required",
 							})}
 							className="h-12 w-full rounded-xl bg-white px-4 outline-none transition-all focus:ring-4 focus:ring-violet-500 dark:bg-zinc-900"
 						/>
 
-						{errors.name && (
+						{errors.startupName && (
 							<p className="mt-1 text-sm text-red-500">
-								{errors.name.message}
+								{errors.startupName.message}
 							</p>
 						)}
 					</div>

@@ -4,13 +4,25 @@ import HeroSection from "@/components/home/HeroSection";
 import StartupStatisticsSection from "@/components/home/StartupStatisticsSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import WhyJoinSection from "@/components/home/WhyJoinSection";
+import { getAllOpportunities } from "@/lib/fetchings/opportunities";
+import { getAllStartups } from "@/lib/fetchings/startups";
 
-export default function Home() {
+export default async function Home() {
+	const startups = await getAllStartups();
+	const { data } = await getAllOpportunities({
+		search: "",
+		workType: "",
+		industry: "",
+		page: "",
+	});
+
 	return (
 		<>
 			<HeroSection></HeroSection>
-			<FeaturedStartupsSection></FeaturedStartupsSection>
-			<FeaturedOpportunitiesSection></FeaturedOpportunitiesSection>
+			<FeaturedStartupsSection startups={startups}></FeaturedStartupsSection>
+			<FeaturedOpportunitiesSection
+				opportunities={data}
+			></FeaturedOpportunitiesSection>
 			<WhyJoinSection></WhyJoinSection>
 			<StartupStatisticsSection></StartupStatisticsSection>
 			<TestimonialsSection></TestimonialsSection>

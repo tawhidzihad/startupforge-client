@@ -6,34 +6,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import StartupCard from "../startupCard/StartupCard";
 
-const startups = [
-	{
-		id: "1",
-		name: "StartupForge",
-		logo: null,
-		founderName: "Tawhid Zihad",
-		industry: "SaaS",
-		teamSizeNeeded: 5,
-	},
-	{
-		id: "2",
-		name: "HireLoop",
-		logo: null,
-		founderName: "John Doe",
-		industry: "HR Tech",
-		teamSizeNeeded: 3,
-	},
-	{
-		id: "3",
-		name: "EcoTrack",
-		logo: null,
-		founderName: "Sarah Smith",
-		industry: "Green Tech",
-		teamSizeNeeded: 4,
-	},
-];
-
-export default function FeaturedStartupsSection() {
+export default function FeaturedStartupsSection({ startups }) {
 	return (
 		<section className="py-20 lg:py-28">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-0">
@@ -91,8 +64,8 @@ export default function FeaturedStartupsSection() {
 					}}
 					className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
 				>
-					{startups.map((startup) => (
-						<motion.div key={startup.id} variants={fadeInUp}>
+					{startups.slice(0, 6).map((startup) => (
+						<motion.div key={startup._id} variants={fadeInUp}>
 							<StartupCard startup={startup} />
 						</motion.div>
 					))}

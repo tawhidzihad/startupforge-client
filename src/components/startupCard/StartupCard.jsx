@@ -5,10 +5,10 @@ import Link from "next/link";
 
 import { motion } from "motion/react";
 
-import { ArrowUpRight, Building2, UserRound, Users } from "lucide-react";
+import { ArrowUpRight, Building2, UserRound } from "lucide-react";
 
 export default function StartupCard({ startup }) {
-	const { id, name, logo, founderName, industry, teamSizeNeeded } = startup;
+	const { _id, startupName, logo, founderName, industry } = startup;
 
 	return (
 		<motion.article
@@ -27,19 +27,21 @@ export default function StartupCard({ startup }) {
 						{logo ? (
 							<Image
 								src={logo}
-								alt={name}
+								alt={startupName}
 								fill
 								className="object-cover"
 							/>
 						) : (
 							<div className=" flex h-full w-full items-center justify-center bg-linear-to-r from-indigo-500 to-violet-500 text-lg font-bold text-white">
-								{name?.charAt(0)?.toUpperCase()}
+								{startupName?.charAt(0)?.toUpperCase()}
 							</div>
 						)}
 					</div>
 
 					<div>
-						<h3 className="line-clamp-1 text-lg font-semibold">{name}</h3>
+						<h3 className="line-clamp-1 text-lg font-semibold">
+							{startupName}
+						</h3>
 
 						<p className="text-sm text-zinc-500">Startup</p>
 					</div>
@@ -55,18 +57,13 @@ export default function StartupCard({ startup }) {
 						<Building2 size={16} />
 						<span>{industry}</span>
 					</div>
-
-					<div className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-						<Users size={16} />
-						<span>{teamSizeNeeded} Team Members Needed</span>
-					</div>
 				</div>
 			</div>
 
 			{/* Footer */}
 			<div className=" border-t border-zinc-200 p-4 dark:border-zinc-600">
 				<Link
-					href={`/startups/${id}`}
+					href={`/startups/${_id}`}
 					className=" group/link inline-flex items-center gap-2 text-sm font-medium text-violet-500"
 				>
 					View Details

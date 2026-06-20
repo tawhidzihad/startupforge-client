@@ -3,10 +3,16 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 
-import { ArrowUpRight, BriefcaseBusiness, CalendarDays } from "lucide-react";
+import {
+	ArrowUpRight,
+	BriefcaseBusiness,
+	Building2,
+	CalendarDays,
+} from "lucide-react";
 
 export default function OpportunityCard({ opportunity }) {
-	const { id, roleTitle, startupName, requiredSkills, deadline } = opportunity;
+	const { _id, roleTitle, startupName, requiredSkills, deadline, industry } =
+		opportunity;
 
 	return (
 		<motion.article
@@ -25,10 +31,17 @@ export default function OpportunityCard({ opportunity }) {
 				{/* Role */}
 				<h3 className="mb-3 text-xl font-semibold">{roleTitle}</h3>
 
-				{/* Startup */}
-				<div className=" mb-5 inline-flex items-center gap-2 rounded-full bg-zinc-100 px-3 py-1.5 text-sm dark:bg-zinc-800">
-					<BriefcaseBusiness size={14} />
-					{startupName}
+				{/* Startup + Industry */}
+				<div className="mb-5 flex flex-wrap items-center gap-2">
+					<div className="inline-flex items-center gap-2 rounded-full bg-zinc-100 px-3 py-1.5 text-sm dark:bg-zinc-800">
+						<BriefcaseBusiness size={14} />
+						{startupName}
+					</div>
+
+					<div className="inline-flex items-center gap-2 rounded-full bg-indigo-500/10 px-3 py-1.5 text-sm font-medium text-indigo-500">
+						<Building2 size={14} />
+						{industry}
+					</div>
 				</div>
 
 				{/* Skills */}
@@ -51,7 +64,7 @@ export default function OpportunityCard({ opportunity }) {
 
 				{/* CTA */}
 				<Link
-					href={`/opportunities/${id}`}
+					href={`/opportunities/${_id}`}
 					className=" group/link inline-flex items-center gap-2 font-medium text-violet-500"
 				>
 					View Opportunity

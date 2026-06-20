@@ -7,31 +7,7 @@ import Link from "next/link";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
 import OpportunityCard from "../opportunityCard/OpportunityCard";
 
-const opportunities = [
-	{
-		id: "1",
-		roleTitle: "Frontend Developer",
-		startupName: "StartupForge",
-		requiredSkills: ["React", "Next.js", "Tailwind CSS"],
-		deadline: "Jul 15, 2026",
-	},
-	{
-		id: "2",
-		roleTitle: "UI/UX Designer",
-		startupName: "HireLoop",
-		requiredSkills: ["Figma", "Wireframing", "Prototyping"],
-		deadline: "Jul 20, 2026",
-	},
-	{
-		id: "3",
-		roleTitle: "Digital Marketer",
-		startupName: "EcoTrack",
-		requiredSkills: ["SEO", "Content Marketing", "Analytics"],
-		deadline: "Jul 28, 2026",
-	},
-];
-
-export default function FeaturedOpportunitiesSection() {
+export default function FeaturedOpportunitiesSection({ opportunities }) {
 	return (
 		<section className="bg-zinc-50 py-20 dark:bg-zinc-900/20 lg:py-28">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-0">
@@ -69,8 +45,8 @@ export default function FeaturedOpportunitiesSection() {
 					}}
 					className=" grid gap-6 md:grid-cols-2 xl:grid-cols-3"
 				>
-					{opportunities.map((opportunity) => (
-						<motion.div key={opportunity.id} variants={fadeInUp}>
+					{opportunities.slice(0, 6).map((opportunity) => (
+						<motion.div key={opportunity._id} variants={fadeInUp}>
 							<OpportunityCard opportunity={opportunity} />
 						</motion.div>
 					))}

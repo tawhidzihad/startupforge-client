@@ -1,9 +1,13 @@
 import BrowseStartupsPage from "@/components/startupPage/BrowseStartupsPage";
+import { getAllStartups } from "@/lib/fetchings/startups";
 
-const StartupsPage = () => {
+const StartupsPage = async ({ searchParams }) => {
+	const { search } = await searchParams;
+	const startups = await getAllStartups(search);
+
 	return (
 		<>
-			<BrowseStartupsPage></BrowseStartupsPage>
+			<BrowseStartupsPage startups={startups}></BrowseStartupsPage>
 		</>
 	);
 };

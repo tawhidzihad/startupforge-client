@@ -16,7 +16,7 @@ import {
 
 export default function MyStartupCard({ startup, onEdit, onDelete }) {
 	const {
-		name,
+		startupName,
 		logo,
 		industry,
 		description,
@@ -47,7 +47,7 @@ export default function MyStartupCard({ startup, onEdit, onDelete }) {
 						{logo ? (
 							<Image
 								src={logo}
-								alt={name}
+								alt={startupName}
 								width={1000}
 								height={1000}
 								className="h-full w-full object-cover"
@@ -63,7 +63,7 @@ export default function MyStartupCard({ startup, onEdit, onDelete }) {
 				{/* Startup Info */}
 				<div className="mt-4">
 					<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-						<h2 className="text-3xl font-bold">{name}</h2>
+						<h2 className="text-3xl font-bold">{startupName}</h2>
 
 						<div>
 							{status === "approved" && (

@@ -32,6 +32,8 @@ export default function AddOpportunityForm({ user, startupData }) {
 				.filter(Boolean),
 			founderId: user?.id,
 			startupId: startupData?._id,
+			startupName: startupData?.startupName,
+			industry: startupData?.industry,
 		};
 
 		const data = await addOpportunity(payload);
@@ -124,6 +126,11 @@ export default function AddOpportunityForm({ user, startupData }) {
 									</option>
 								))}
 							</select>
+							{errors.workType && (
+								<p className="mt-1 text-sm text-red-500">
+									{errors.workType.message}
+								</p>
+							)}
 						</div>
 
 						{/* Commitment Level */}
@@ -131,7 +138,6 @@ export default function AddOpportunityForm({ user, startupData }) {
 							<label className="mb-2 block text-sm font-medium">
 								Commitment Level
 							</label>
-
 							<select
 								{...register("commitmentLevel", {
 									required: "Commitment level is required",
@@ -146,6 +152,11 @@ export default function AddOpportunityForm({ user, startupData }) {
 									</option>
 								))}
 							</select>
+							{errors.commitmentLevel && (
+								<p className="mt-1 text-sm text-red-500">
+									{errors.commitmentLevel.message}
+								</p>
+							)}
 						</div>
 					</div>
 

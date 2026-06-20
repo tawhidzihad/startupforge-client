@@ -8,207 +8,15 @@ import StartupFilter from "./StartupFilter";
 import StartupSearchBar from "./StartupSearchBar";
 
 import { fadeInUp } from "@/lib/motion";
+import EmptyStartupState from "./EmptyStartupState";
 
-export const startups = [
-	{
-		id: "1",
-		name: "StartupForge",
-		logo: null,
-		founderName: "Tawhid Zihad",
-		industry: "SaaS",
-		teamSizeNeeded: 5,
-		createdAt: "2026-06-18",
-	},
-	{
-		id: "2",
-		name: "HireLoop",
-		logo: null,
-		founderName: "Sarah Johnson",
-		industry: "HR Tech",
-		teamSizeNeeded: 3,
-		createdAt: "2026-06-17",
-	},
-	{
-		id: "3",
-		name: "EcoTrack",
-		logo: null,
-		founderName: "Michael Chen",
-		industry: "Green Tech",
-		teamSizeNeeded: 4,
-		createdAt: "2026-06-16",
-	},
-	{
-		id: "4",
-		name: "MediConnect",
-		logo: null,
-		founderName: "Emma Wilson",
-		industry: "Health Tech",
-		teamSizeNeeded: 6,
-		createdAt: "2026-06-15",
-	},
-	{
-		id: "5",
-		name: "FinPilot",
-		logo: null,
-		founderName: "James Carter",
-		industry: "FinTech",
-		teamSizeNeeded: 4,
-		createdAt: "2026-06-14",
-	},
-	{
-		id: "6",
-		name: "LearnSphere",
-		logo: null,
-		founderName: "Olivia Brown",
-		industry: "EdTech",
-		teamSizeNeeded: 5,
-		createdAt: "2026-06-13",
-	},
-	{
-		id: "7",
-		name: "TravelSync",
-		logo: null,
-		founderName: "Daniel Lee",
-		industry: "Travel Tech",
-		teamSizeNeeded: 3,
-		createdAt: "2026-06-12",
-	},
-	{
-		id: "8",
-		name: "Foodly",
-		logo: null,
-		founderName: "Sophia Davis",
-		industry: "Food Tech",
-		teamSizeNeeded: 7,
-		createdAt: "2026-06-11",
-	},
-	{
-		id: "9",
-		name: "CloudNest",
-		logo: null,
-		founderName: "William Taylor",
-		industry: "Cloud Computing",
-		teamSizeNeeded: 4,
-		createdAt: "2026-06-10",
-	},
-	{
-		id: "10",
-		name: "AgriBoost",
-		logo: null,
-		founderName: "Noah Anderson",
-		industry: "AgriTech",
-		teamSizeNeeded: 5,
-		createdAt: "2026-06-09",
-	},
-	{
-		id: "11",
-		name: "CryptoVault",
-		logo: null,
-		founderName: "Ethan Martin",
-		industry: "Blockchain",
-		teamSizeNeeded: 6,
-		createdAt: "2026-06-08",
-	},
-	{
-		id: "12",
-		name: "FitTrack",
-		logo: null,
-		founderName: "Mia Thompson",
-		industry: "Fitness Tech",
-		teamSizeNeeded: 3,
-		createdAt: "2026-06-07",
-	},
-	{
-		id: "13",
-		name: "SkillHub",
-		logo: null,
-		founderName: "Liam White",
-		industry: "EdTech",
-		teamSizeNeeded: 4,
-		createdAt: "2026-06-06",
-	},
-	{
-		id: "14",
-		name: "AutoFlow",
-		logo: null,
-		founderName: "Charlotte Harris",
-		industry: "Automation",
-		teamSizeNeeded: 5,
-		createdAt: "2026-06-05",
-	},
-	{
-		id: "15",
-		name: "PetCare Plus",
-		logo: null,
-		founderName: "Benjamin Clark",
-		industry: "Pet Tech",
-		teamSizeNeeded: 2,
-		createdAt: "2026-06-04",
-	},
-	{
-		id: "16",
-		name: "LegalEase",
-		logo: null,
-		founderName: "Amelia Lewis",
-		industry: "Legal Tech",
-		teamSizeNeeded: 4,
-		createdAt: "2026-06-03",
-	},
-	{
-		id: "17",
-		name: "EventSpark",
-		logo: null,
-		founderName: "Lucas Walker",
-		industry: "Event Tech",
-		teamSizeNeeded: 6,
-		createdAt: "2026-06-02",
-	},
-	{
-		id: "18",
-		name: "SafePay",
-		logo: null,
-		founderName: "Harper Hall",
-		industry: "FinTech",
-		teamSizeNeeded: 5,
-		createdAt: "2026-06-01",
-	},
-	{
-		id: "19",
-		name: "VisionAI",
-		logo: null,
-		founderName: "Henry Young",
-		industry: "Artificial Intelligence",
-		teamSizeNeeded: 8,
-		createdAt: "2026-05-31",
-	},
-	{
-		id: "20",
-		name: "MarketFlow",
-		logo: null,
-		founderName: "Evelyn King",
-		industry: "Marketing Tech",
-		teamSizeNeeded: 4,
-		createdAt: "2026-05-30",
-	},
-];
-
-export default function BrowseStartupsPage() {
-	const [search, setSearch] = useState("");
+export default function BrowseStartupsPage({ startups }) {
 	const [sort, setSort] = useState("newest");
 	const [currentPage, setCurrentPage] = useState(1);
-
 	const itemsPerPage = 9;
 
 	const filteredData = useMemo(() => {
 		let data = [...startups];
-
-		// Future Backend Search
-		// For now local search
-		if (search.trim()) {
-			data = data.filter((startup) =>
-				startup.name.toLowerCase().includes(search.toLowerCase()),
-			);
-		}
 
 		if (sort === "newest") {
 			data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -219,7 +27,7 @@ export default function BrowseStartupsPage() {
 		}
 
 		return data;
-	}, [search, sort]);
+	}, [startups, sort]);
 
 	const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
@@ -230,7 +38,7 @@ export default function BrowseStartupsPage() {
 
 	return (
 		<section className="py-20">
-			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-0">
 				{/* Header */}
 				<motion.div
 					{...fadeInUp}
@@ -261,13 +69,7 @@ export default function BrowseStartupsPage() {
 				>
 					<div className="flex flex-col gap-4 lg:flex-row">
 						<div className="flex-1">
-							<StartupSearchBar
-								search={search}
-								setSearch={(value) => {
-									setSearch(value);
-									setCurrentPage(1);
-								}}
-							/>
+							<StartupSearchBar />
 						</div>
 
 						<div className="w-full lg:w-56">
@@ -296,11 +98,15 @@ export default function BrowseStartupsPage() {
 				</div>
 
 				{/* Grid */}
-				<div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-					{paginatedData.map((startup) => (
-						<StartupCard key={startup.id} startup={startup} />
-					))}
-				</div>
+				{paginatedData.length > 0 ? (
+					<div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+						{paginatedData.map((startup) => (
+							<StartupCard key={startup._id} startup={startup} />
+						))}
+					</div>
+				) : (
+					<EmptyStartupState />
+				)}
 
 				{/* Pagination */}
 				{totalPages > 1 && (
