@@ -18,7 +18,7 @@ export default function ApplyOpportunityForm({ user, opportunity }) {
 		formState: { errors, isSubmitting },
 	} = useForm({
 		defaultValues: {
-			opportunityId: opportunity?._id,
+			opportunityRoleTitle: opportunity?.roleTitle,
 			applicantEmail: user?.email,
 			applicantName: user?.name,
 			applicantId: user?.id,

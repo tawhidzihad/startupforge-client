@@ -2,6 +2,7 @@
 
 import { serverFetch } from "../core/server";
 
+// Get Application by opportunityId, applicantId, founderId
 export const getApplications = async ({
 	opportunityId,
 	applicantId,

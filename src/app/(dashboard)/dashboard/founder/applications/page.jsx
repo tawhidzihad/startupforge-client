@@ -6,6 +6,7 @@ const ApplicationsPage = async () => {
 	const user = await getUserSession();
 	const applications = await getApplications(user?.id);
 
+	
 	return (
 		<>
 			<ApplicationsTable applications={applications}></ApplicationsTable>
