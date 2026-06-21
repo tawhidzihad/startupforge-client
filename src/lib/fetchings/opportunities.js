@@ -23,3 +23,8 @@ export const getAllMyOpportunities = async (id) => {
 export const getAllMyOpportunitiesByStartupId = async (id) => {
 	return serverFetch(`/api/public/opportunities/${id}`);
 };
+
+// Get Single Opportunity by opportunity _id for oppotunity details page
+export const getThisOpportunity = async (id) => {
+	return serverFetch(`/api/public/opportunity/${id}`);
+};

@@ -8,7 +8,7 @@ import { uploadImageToImgbb } from "@/lib/actions/imageUploader";
 import { authClient } from "@/lib/auth-client";
 import { Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
-import { redirect } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
@@ -16,6 +16,10 @@ export default function SignupForm() {
 	const [imageUrl, setImageUrl] = useState(null);
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+	const router = useRouter();
+	const searchParams = useSearchParams();
+	const redirectTo = searchParams.get("redirect") || "/signin";
 
 	const {
 		register,
@@ -47,13 +51,21 @@ export default function SignupForm() {
 		}
 	};
 
+	const planMap = {
+		collaborator: "collaborator_free",
+		founder: "founder_free",
+		admin: "admin",
+	};
+
 	// Register button handler
 	const onSubmit = async (formData) => {
 		const { data, error } = await authClient.signUp.email({
 			name: formData.name,
 			email: formData.email,
 			role: formData.role,
+			plan: planMap[formData.role],
 			password: formData.password,
+
 			...(imageUrl && {
 				image: imageUrl,
 			}),
@@ -66,7 +78,7 @@ export default function SignupForm() {
 
 		if (data) {
 			toast.success("Your account has been created successfully!");
-			redirect("/signin");
+			router.push(redirectTo);
 		}
 	};
 
@@ -358,7 +370,7 @@ export default function SignupForm() {
 				<p className="mt-6 text-center text-sm text-zinc-500">
 					Already have an account?{" "}
 					<Link
-						href="/signin"
+						href={`/signin?redirect=${redirectTo}`}
 						className="font-medium text-violet-500 hover:underline"
 					>
 						Login

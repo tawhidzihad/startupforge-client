@@ -1,9 +1,21 @@
 "use client";
 
 import { Dropdown } from "@heroui/react";
+import { ChevronsUpDown, Filter } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { ChevronsUpDown, Filter } from "lucide-react";
+const industries = [
+	"SaaS",
+	"FinTech",
+	"EdTech",
+	"HealthTech",
+	"AI",
+	"E-commerce",
+	"Marketing",
+	"HR Tech",
+	"Cybersecurity",
+	"Other",
+];
 
 export default function OpportunityFilter() {
 	const router = useRouter();
@@ -45,11 +57,8 @@ export default function OpportunityFilter() {
 				<Dropdown.Popover>
 					<Dropdown.Menu onAction={(key) => updateFilter("workType", key)}>
 						<Dropdown.Item id="">All Work Types</Dropdown.Item>
-
 						<Dropdown.Item id="Remote">Remote</Dropdown.Item>
-
 						<Dropdown.Item id="Hybrid">Hybrid</Dropdown.Item>
-
 						<Dropdown.Item id="On-site">On-site</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown.Popover>
@@ -68,12 +77,11 @@ export default function OpportunityFilter() {
 				<Dropdown.Popover>
 					<Dropdown.Menu onAction={(key) => updateFilter("industry", key)}>
 						<Dropdown.Item id="">All Industries</Dropdown.Item>
-						<Dropdown.Item id="SaaS">SaaS</Dropdown.Item>
-						<Dropdown.Item id="FinTech">FinTech</Dropdown.Item>
-						<Dropdown.Item id="HealthTech">HealthTech</Dropdown.Item>
-						<Dropdown.Item id="EdTech">EdTech</Dropdown.Item>
-						<Dropdown.Item id="AI">AI</Dropdown.Item>
-						<Dropdown.Item id="Other">Other</Dropdown.Item>
+						{industries.map((industry) => (
+							<Dropdown.Item key={industry} id={industry}>
+								{industry}
+							</Dropdown.Item>
+						))}
 					</Dropdown.Menu>
 				</Dropdown.Popover>
 			</Dropdown>

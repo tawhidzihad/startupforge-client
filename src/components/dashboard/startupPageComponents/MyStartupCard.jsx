@@ -54,7 +54,7 @@ export default function MyStartupCard({ startup, onEdit, onDelete }) {
 							/>
 						) : (
 							<div className="flex h-full w-full items-center justify-center bg-linear-to-r from-indigo-500 to-violet-500 text-3xl font-bold text-white">
-								{name?.charAt(0)?.toUpperCase()}
+								{startupName?.charAt(0)?.toUpperCase()}
 							</div>
 						)}
 					</div>

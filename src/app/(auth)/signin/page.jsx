@@ -6,12 +6,16 @@ import { useForm } from "react-hook-form";
 
 import { authClient } from "@/lib/auth-client";
 import { Eye, EyeOff } from "lucide-react";
-import { redirect } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 export default function SignupForm() {
 	const [showPassword, setShowPassword] = useState(false);
+
+	const router = useRouter();
+	const searchParams = useSearchParams();
+	const redirectTo = searchParams.get("redirect") || "/";
 
 	const {
 		register,
@@ -40,7 +44,7 @@ export default function SignupForm() {
 
 		if (data) {
 			toast.success("Welcome back! You've logged in successfully!");
-			redirect("/");
+			router.push(redirectTo);
 		}
 	};
 
@@ -179,7 +183,7 @@ export default function SignupForm() {
 				<p className="mt-6 text-center text-sm text-zinc-500">
 					Don&apos;t have an account?{" "}
 					<Link
-						href="/signup"
+						href={`/signup?redirect=${redirectTo}`}
 						className="font-medium text-violet-500 hover:underline"
 					>
 						Create Account

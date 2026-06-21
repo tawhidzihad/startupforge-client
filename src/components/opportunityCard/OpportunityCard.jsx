@@ -46,14 +46,20 @@ export default function OpportunityCard({ opportunity }) {
 
 				{/* Skills */}
 				<div className="mb-6 flex flex-wrap gap-2">
-					{requiredSkills.map((skill) => (
+					{requiredSkills.slice(0, 3).map((skill, i) => (
 						<span
-							key={skill}
-							className=" rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-500"
+							key={i}
+							className="rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-500"
 						>
 							{skill}
 						</span>
 					))}
+
+					{requiredSkills.length > 3 && (
+						<span className="rounded-full border border-zinc-200 bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+							+{requiredSkills.length - 3}
+						</span>
+					)}
 				</div>
 
 				{/* Deadline */}

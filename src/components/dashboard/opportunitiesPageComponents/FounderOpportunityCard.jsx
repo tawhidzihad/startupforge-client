@@ -39,11 +39,8 @@ export default function FounderOpportunityCard({ opportunity }) {
 				<p className="mb-2 text-sm font-medium">Required Skills</p>
 
 				<div className="flex flex-wrap gap-2">
-					{opportunity.requiredSkills?.map((skill) => (
-						<span
-							key={skill}
-							className="rounded-lg border px-3 py-1 text-sm"
-						>
+					{opportunity.requiredSkills?.map((skill, i) => (
+						<span key={i} className="rounded-lg border px-3 py-1 text-sm">
 							{skill}
 						</span>
 					))}
