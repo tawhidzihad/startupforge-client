@@ -3,7 +3,7 @@
 import { icons } from "@/UI/icons";
 import { motion } from "motion/react";
 
-export default function DashboardStatsCard({ title, value, icon, change }) {
+export default function DashboardStatsCard({ title, value, icon }) {
 	const Icon = icons[icon];
 
 	return (
@@ -27,10 +27,6 @@ export default function DashboardStatsCard({ title, value, icon, change }) {
 					{Icon && <Icon size={22} />}
 				</div>
 			</div>
-
-			{change && (
-				<p className="mt-4 text-sm font-medium text-green-500">{change}</p>
-			)}
 		</motion.div>
 	);
 }

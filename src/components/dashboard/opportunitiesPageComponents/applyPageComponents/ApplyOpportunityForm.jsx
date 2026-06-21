@@ -127,7 +127,6 @@ export default function ApplyOpportunityForm({ user, opportunity }) {
 
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 				{/* Hidden Fields */}
-				<input type="hidden" {...register("opportunityId")} />
 				<input type="hidden" {...register("applicantEmail")} />
 				<input type="hidden" {...register("applicantName")} />
 				<input type="hidden" {...register("startupName")} />

@@ -1,50 +1,54 @@
 import DashboardChart from "@/components/dashboard/chartsCard/DashboardChart";
 import DashboardStatsCard from "@/components/dashboard/statsCard/DashboardStatsCard";
+import { getUserSession } from "@/lib/core/session";
+import { getApplications } from "@/lib/fetchings/applications";
+import { getAllMyOpportunities } from "@/lib/fetchings/opportunities";
 
-const founderStats = [
-	{
-		title: "Total Opportunities",
-		value: 24,
-		icon: "opportunity",
-		change: "+12%",
-	},
-	{
-		title: "Applications",
-		value: 184,
-		icon: "applications",
-		change: "+8%",
-	},
-	{
-		title: "Team Members",
-		value: 12,
-		icon: "users",
-	},
-];
+export default async function FounderDashboardPage() {
+	const user = await getUserSession();
+	const allMyOpportunity = await getAllMyOpportunities(user?.id);
 
-const applicationData = [
-	{ month: "Jan", applications: 12 },
-	{ month: "Feb", applications: 19 },
-	{ month: "Mar", applications: 25 },
-	{ month: "Apr", applications: 31 },
-	{ month: "May", applications: 40 },
-	{ month: "Jun", applications: 52 },
-];
+	const applications = await getApplications({
+		founderId: user.id,
+	});
 
-const opportunityData = [
-	{ name: "Frontend", count: 12 },
-	{ name: "Backend", count: 8 },
-	{ name: "UI/UX", count: 5 },
-	{ name: "Marketing", count: 7 },
-];
+	const acceptedMembersNumber = applications.filter(
+		(application) => application.status === "accepted",
+	).length;
 
-const startupCategoryData = [
-	{ name: "SaaS", value: 35 },
-	{ name: "FinTech", value: 25 },
-	{ name: "EdTech", value: 20 },
-	{ name: "HealthTech", value: 20 },
-];
+	const founderStats = [
+		{
+			title: "Total Opportunities",
+			value: allMyOpportunity.length,
+			icon: "opportunity",
+		},
+		{
+			title: "Applications",
+			value: applications.length,
+			icon: "applications",
+		},
+		{
+			title: "Accepted Members",
+			value: acceptedMembersNumber,
+			icon: "users",
+		},
+	];
 
-export default function FounderDashboardPage() {
+	const applicationStatusData = [
+		{
+			name: "Pending",
+			total: applications.filter((app) => app.status === "pending").length,
+		},
+		{
+			name: "Accepted",
+			total: applications.filter((app) => app.status === "accepted").length,
+		},
+		{
+			name: "Rejected",
+			total: applications.filter((app) => app.status === "rejected").length,
+		},
+	];
+
 	return (
 		<div className="px-4 py-8 lg:px-6">
 			{/* Header */}
@@ -73,36 +77,14 @@ export default function FounderDashboardPage() {
 					</p>
 				</div>
 
-				<div className="mt-10 grid gap-6 lg:grid-cols-2">
-					<DashboardChart
-						title="Application Trends"
-						description="Last 6 months applications"
-						type="line"
-						data={applicationData}
-						dataKey="applications"
-						xAxisKey="month"
-					/>
-
-					<DashboardChart
-						title="Opportunity Categories"
-						description="Current openings"
-						type="bar"
-						data={opportunityData}
-						dataKey="count"
-						xAxisKey="name"
-					/>
-				</div>
-
-				{/* <div className="mt-6">
-					<DashboardChart
-						title="Startup Categories"
-						description="Distribution by industry"
-						type="pie"
-						data={startupCategoryData}
-						dataKey="value"
-						xAxisKey="name"
-					/>
-				</div> */}
+				<DashboardChart
+					title="Founder Overview"
+					description="Startup activity overview"
+					type="bar"
+					data={applicationStatusData}
+					dataKey="total"
+					xAxisKey="name"
+				/>
 			</div>
 		</div>
 	);

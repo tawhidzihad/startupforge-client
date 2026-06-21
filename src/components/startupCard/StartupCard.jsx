@@ -28,8 +28,9 @@ export default function StartupCard({ startup }) {
 							<Image
 								src={logo}
 								alt={startupName}
-								fill
-								className="object-cover"
+								width={500}
+								height={500}
+								className="w-full h-full object-cover"
 							/>
 						) : (
 							<div className=" flex h-full w-full items-center justify-center bg-linear-to-r from-indigo-500 to-violet-500 text-lg font-bold text-white">

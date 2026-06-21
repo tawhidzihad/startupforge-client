@@ -36,8 +36,8 @@ export default function Navbar() {
 					<Image
 						src="/images/logo.png"
 						alt="StartupForge"
-						width={10000}
-						height={10000}
+						width={1000}
+						height={1000}
 						className="w-auto h-12"
 						loading="eager"
 					/>

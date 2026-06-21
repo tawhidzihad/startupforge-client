@@ -4,9 +4,10 @@ import { getApplications } from "@/lib/fetchings/applications";
 
 const ApplicationsPage = async () => {
 	const user = await getUserSession();
-	const applications = await getApplications(user?.id);
+	const applications = await getApplications({
+		founderId: user.id,
+	});
 
-	
 	return (
 		<>
 			<ApplicationsTable applications={applications}></ApplicationsTable>
