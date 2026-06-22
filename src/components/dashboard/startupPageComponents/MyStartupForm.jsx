@@ -40,7 +40,7 @@ export default function MyStartupForm({ user, startupData, onSuccess }) {
 		formState: { errors, isSubmitting },
 	} = useForm({
 		defaultValues: {
-			startupName: startupData?.name || "",
+			startupName: startupData?.startupName || "",
 			industry: startupData?.industry || "",
 			description: startupData?.description || "",
 			fundingStage: startupData?.fundingStage || "",

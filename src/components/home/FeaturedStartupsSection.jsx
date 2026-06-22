@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import StartupCard from "../startupCard/StartupCard";
 
-export default function FeaturedStartupsSection({ startups }) {
+export default function FeaturedStartupsSection({ startups = [] }) {
 	return (
 		<section className="py-20 lg:py-28">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-0">

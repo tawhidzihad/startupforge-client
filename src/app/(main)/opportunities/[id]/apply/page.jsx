@@ -18,7 +18,10 @@ const ApplyPage = async ({ params }) => {
 
 	const opportunity = await getThisOpportunity(id);
 
-	const applications = await getApplications(user?.id);
+	const applications = await getApplications({
+		applicantId: user?.id,
+	});
+
 	const plan = await getPlan(user?.plan || "collaborator_free");
 
 	if (opportunity.founderId === user.id) {

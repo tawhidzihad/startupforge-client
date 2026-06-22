@@ -1,11 +1,11 @@
-import ApplicationsTable from "@/components/dashboard/applicationsPageComponents/ApplicationsTable";
+import ApplicationsTable from "@/components/dashboard/founderApplicationsPageComponents/ApplicationsTable";
 import { getUserSession } from "@/lib/core/session";
 import { getApplications } from "@/lib/fetchings/applications";
 
-const ApplicationsPage = async () => {
+const FounderApplicationsPage = async () => {
 	const user = await getUserSession();
 	const applications = await getApplications({
-		founderId: user.id,
+		founderId: user?.id,
 	});
 
 	return (
@@ -15,4 +15,4 @@ const ApplicationsPage = async () => {
 	);
 };
 
-export default ApplicationsPage;
+export default FounderApplicationsPage;

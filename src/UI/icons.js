@@ -1,7 +1,9 @@
 import {
 	BriefcaseBusiness,
 	Building2,
+	CheckCircle2,
 	ClipboardList,
+	Clock3,
 	CreditCard,
 	FileText,
 	LayoutDashboard,
@@ -25,6 +27,8 @@ export const icons = {
 
 	// Collaborator
 	opportunities: Search,
+	success: CheckCircle2,
+	pending: Clock3,
 
 	// Admin
 	users: Users,

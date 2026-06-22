@@ -7,7 +7,7 @@ import Link from "next/link";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
 import OpportunityCard from "../opportunityCard/OpportunityCard";
 
-export default function FeaturedOpportunitiesSection({ opportunities }) {
+export default function FeaturedOpportunitiesSection({ opportunities = [] }) {
 	return (
 		<section className="bg-zinc-50 py-20 dark:bg-zinc-900/20 lg:py-28">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-0">

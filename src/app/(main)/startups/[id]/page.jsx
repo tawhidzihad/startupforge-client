@@ -11,7 +11,7 @@ export default async function StartupDetailsPage({ params }) {
 	const startup = await getThisStartup(id);
 	const opportunities = await getAllMyOpportunitiesByStartupId(startup?._id);
 	return (
-		<div className="mx-auto max-w-7xl space-y-5 px-4 lg:px-0 py-20">
+		<div className="mx-auto max-w-7xl w-full space-y-5 px-4 lg:px-0 py-20">
 			{/* Startup Hero */}
 			<div className="p-8 rounded-3xl border border-zinc-200 bg-background shadow-sm dark:border-zinc-800">
 				<div className="flex flex-col items-center text-center">
