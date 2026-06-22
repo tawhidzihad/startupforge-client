@@ -5,9 +5,6 @@ export default function ApplicationLimitReachedState({
 	currentApplications,
 	limit,
 }) {
-
-	// if()
-
 	return (
 		<div className="mx-auto max-w-7xl py-12">
 			<div className="flex flex-col items-center justify-center rounded-3xl border border-zinc-200 bg-background p-8 text-center shadow-sm dark:border-zinc-800">

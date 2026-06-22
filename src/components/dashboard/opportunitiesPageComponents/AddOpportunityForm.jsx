@@ -45,7 +45,7 @@ export default function AddOpportunityForm({ user, startupData }) {
 	};
 
 	return (
-		<div className="mx-auto max-w-7xl lg:pt-15">
+		<div className="mx-auto max-w-7xl">
 			<div className="rounded-3xl border border-zinc-200 bg-background p-7 shadow-sm dark:border-zinc-800">
 				<div className="mb-8">
 					<h1 className="text-3xl font-bold">Add Opportunity</h1>
