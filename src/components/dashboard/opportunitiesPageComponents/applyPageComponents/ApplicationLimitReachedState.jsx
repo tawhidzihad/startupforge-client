@@ -2,9 +2,12 @@ import { Crown, Lock, Zap } from "lucide-react";
 import Link from "next/link";
 
 export default function ApplicationLimitReachedState({
-	currentApplications = 3,
-	limit = 3,
+	currentApplications,
+	limit,
 }) {
+
+	// if()
+
 	return (
 		<div className="mx-auto max-w-7xl py-12">
 			<div className="flex flex-col items-center justify-center rounded-3xl border border-zinc-200 bg-background p-8 text-center shadow-sm dark:border-zinc-800">
@@ -17,8 +20,8 @@ export default function ApplicationLimitReachedState({
 				<h1 className="text-4xl font-bold">Application Limit Reached</h1>
 
 				<p className="mt-4 max-w-2xl text-lg leading-8 text-zinc-500">
-					You&apos;`ve used all {limit} applications available in your current
-					plan. Upgrade your account to continue applying for more
+					You&apos;`ve used all {limit} applications available in your
+					current plan. Upgrade your account to continue applying for more
 					opportunities.
 				</p>
 

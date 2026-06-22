@@ -41,6 +41,7 @@ export default function ApplyOpportunityForm({ user, opportunity }) {
 		if (data.insertedId) {
 			setIsApplied(true);
 			toast.success("Application submitted successfully!");
+			router.refresh();
 		}
 	};
 

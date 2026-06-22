@@ -65,6 +65,7 @@ export default async function StartupDetailsPage({ params }) {
 
 				<div className="rounded-3xl border border-zinc-200 bg-background p-6 dark:border-zinc-800">
 					<div className="flex items-center gap-3">
+						
 						<CalendarDays className="text-indigo-500" size={22} />
 						<div>
 							<p className="text-sm text-zinc-500">Created</p>
@@ -79,6 +80,8 @@ export default async function StartupDetailsPage({ params }) {
 								)}
 							</p>
 						</div>
+
+
 					</div>
 				</div>
 			</div>
@@ -101,7 +104,7 @@ export default async function StartupDetailsPage({ params }) {
 							<h2 className="text-3xl font-bold">Open Opportunities</h2>
 						</div>
 						
-						<div className="grid gap-6 lg:grid-cols-2">
+						<div className="grid gap-6 lg:grid-cols-3">
 							{opportunities.map((opportunity) => (
 								<OpportunityCard
 									key={opportunity._id}

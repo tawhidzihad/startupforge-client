@@ -40,8 +40,9 @@ const OpportunityDetailsPage = async ({ params }) => {
 								</div>
 							</div>
 
-							{/* Details */}
+							{/* Details Stats */}
 							<div className="grid gap-4 md:grid-cols-3">
+								{/* Work Type */}
 								<div className="rounded-2xl border border-zinc-200 p-5 dark:border-zinc-800">
 									<div className="mb-2 flex items-center gap-2 text-violet-500">
 										<BriefcaseBusiness size={18} />
@@ -55,6 +56,7 @@ const OpportunityDetailsPage = async ({ params }) => {
 									</p>
 								</div>
 
+								{/* Commitment */}
 								<div className="rounded-2xl border border-zinc-200 p-5 dark:border-zinc-800">
 									<div className="mb-2 flex items-center gap-2 text-green-500">
 										<Clock3 size={18} />
@@ -68,6 +70,7 @@ const OpportunityDetailsPage = async ({ params }) => {
 									</p>
 								</div>
 
+								{/* Deadline */}
 								<div className="rounded-2xl border border-zinc-200 p-5 dark:border-zinc-800">
 									<div className="mb-2 flex items-center gap-2 text-indigo-500">
 										<CalendarDays size={18} />
@@ -77,7 +80,13 @@ const OpportunityDetailsPage = async ({ params }) => {
 									</div>
 
 									<p className="font-semibold">
-										{opportunity.deadline}
+										{new Date(
+											opportunity.deadline,
+										).toLocaleDateString("en-US", {
+											month: "short",
+											day: "numeric",
+											year: "numeric",
+										})}
 									</p>
 								</div>
 							</div>

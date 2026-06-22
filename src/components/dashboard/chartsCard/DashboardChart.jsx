@@ -5,8 +5,8 @@ import {
 	BarChart,
 	CartesianGrid,
 	Legend,
-	Pie,
-	PieChart,
+	Line,
+	LineChart,
 	ResponsiveContainer,
 	Tooltip,
 	XAxis,
@@ -63,24 +63,40 @@ export default function DashboardChart({
 							</BarChart>
 						)}
 
-						{/* Pie Chart */}
-						{type === "pie" && (
-							<PieChart>
-								<Pie
-									data={data}
-									dataKey={dataKey}
-									nameKey={xAxisKey}
-									cx="50%"
-									cy="50%"
-									outerRadius={100}
-									fill="#8b5cf6"
-									label
-								/>
+						{/* Line Chart */}
+						{type === "line" && (
+							<LineChart
+								data={data}
+								margin={{
+									top: 20,
+									right: 20,
+									left: 0,
+									bottom: 5,
+								}}
+							>
+								<CartesianGrid strokeDasharray="3 3" />
+
+								<XAxis dataKey={xAxisKey} />
+
+								<YAxis />
 
 								<Tooltip />
 
 								<Legend />
-							</PieChart>
+
+								<Line
+									type="monotone"
+									dataKey={dataKey}
+									stroke="#8b5cf6"
+									strokeWidth={3}
+									dot={{
+										r: 5,
+									}}
+									activeDot={{
+										r: 8,
+									}}
+								/>
+							</LineChart>
 						)}
 					</>
 				</ResponsiveContainer>
