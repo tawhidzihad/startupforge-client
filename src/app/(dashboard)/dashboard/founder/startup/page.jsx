@@ -5,6 +5,7 @@ import StartupSection from "./StartupSection";
 const MyStartupPage = async () => {
 	const user = await getUserSession();
 	const startupData = await getMyStartups(user?.email);
+	console.log(startupData);
 
 	return (
 		<>
