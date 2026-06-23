@@ -12,8 +12,21 @@ const inter = Inter({
 });
 
 export const metadata = {
-	title: "StartupForge - Startup Team Builder Platform",
-	description: "StartupForge - Startup Team Builder Platform",
+	title: "StartupForge - Build Startup Teams & Find Opportunities",
+	description:
+		"StartupForge connects startup founders with talented collaborators. Create startup profiles, post opportunities, recruit team members, and discover exciting startup projects in one platform.",
+	keywords: [
+		"startup",
+		"startup team builder",
+		"startup collaboration",
+		"startup opportunities",
+		"co-founder",
+		"startup jobs",
+		"startup hiring",
+		"entrepreneurship",
+		"startup platform",
+		"StartupForge",
+	],
 };
 
 export default function RootLayout({ children }) {

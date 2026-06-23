@@ -73,9 +73,18 @@ export default async function PricingPage() {
 						</div>
 
 						{/* CTA */}
-						<button className="mt-8 h-13 w-full cursor-pointer rounded-xl bg-linear-to-r from-indigo-500 to-violet-500 font-semibold text-white transition-all hover:shadow-lg">
-							Upgrade to Premium
-						</button>
+						<form
+							action="/api/checkout_sessions"
+							method="POST"
+							className="mt-8"
+						>
+							<button
+								type="submit"
+								className="h-13 w-full cursor-pointer rounded-xl bg-linear-to-r from-indigo-500 to-violet-500 font-semibold text-white transition-all hover:shadow-lg"
+							>
+								Upgrade to Premium
+							</button>
+						</form>
 
 						<p className="mt-4 text-center text-sm text-zinc-500">
 							Secure one-time payment. No recurring subscription.
