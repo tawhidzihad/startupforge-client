@@ -10,11 +10,6 @@ const AllDashboardLayout = async ({ children }) => {
 		redirect("/signin");
 	}
 
-	// Blocked User
-	if (user?.isBlocked) {
-		redirect("/account-blocked");
-	}
-
 	return <>{children}</>;
 };
 

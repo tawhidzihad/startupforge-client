@@ -59,8 +59,8 @@ export default function MyStartupForm({ user, startupData, onSuccess }) {
 			...formData,
 			logo: logoUrl,
 			founderEmail: user?.email,
-			status: "pending",
 			founderName: user?.name,
+			status: startupData?.status || "pending",
 		};
 
 		if (!startupData) {

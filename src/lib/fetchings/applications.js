@@ -1,6 +1,6 @@
 "use server";
 
-import { serverFetch } from "../core/server";
+import { protectedServerFetch } from "../core/server";
 
 // Get Application by opportunityId, applicantId, founderId
 export const getApplications = async ({
@@ -21,5 +21,5 @@ export const getApplications = async ({
 		params.append("applicantId", applicantId);
 	}
 
-	return serverFetch(`/api/applications?${params.toString()}`);
+	return protectedServerFetch(`/api/applications?${params.toString()}`);
 };

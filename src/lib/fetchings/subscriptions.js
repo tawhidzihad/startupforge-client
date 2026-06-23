@@ -1,7 +1,8 @@
 "use server";
 
-import { serverFetch } from "../core/server";
+import { protectedServerFetch } from "../core/server";
 
+// Get all subscriptions fot admi route
 export const getAllSubscriptions = async () => {
-	return serverFetch("/api/success/subscriptions");
+	return protectedServerFetch("/api/success/subscriptions");
 };

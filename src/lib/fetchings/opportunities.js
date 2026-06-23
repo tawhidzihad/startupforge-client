@@ -1,6 +1,6 @@
 "use server";
 
-import { serverFetch } from "../core/server";
+import { protectedServerFetch, serverFetch } from "../core/server";
 
 // Get Opportunity by Search, filter, pagination query , for Browse Opportunity route
 export const getAllOpportunities = async ({
@@ -16,12 +16,12 @@ export const getAllOpportunities = async ({
 
 // Get Opportuinity by FounderId - Showing in founder Dashboard
 export const getAllMyOpportunities = async (id) => {
-	return serverFetch(`/api/opportunities?founderId=${id}`);
+	return protectedServerFetch(`/api/opportunities?founderId=${id}`);
 };
 
 // Get all Opportunity by StartupId - showing in Startup details page
 export const getAllMyOpportunitiesByStartupId = async (id) => {
-	return serverFetch(`/api/public/opportunities/${id}`);
+	return protectedServerFetch(`/api/public/opportunities/${id}`);
 };
 
 // Get Single Opportunity by opportunity _id for oppotunity details page

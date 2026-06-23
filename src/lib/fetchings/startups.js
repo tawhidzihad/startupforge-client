@@ -1,10 +1,10 @@
 "use server";
 
-import { serverFetch } from "../core/server";
+import { protectedServerFetch, serverFetch } from "../core/server";
 
 // Get Particular User Startup by Founder Email
 export const getMyStartups = async (founderEmail) => {
-	return serverFetch(`/api/startups?founderEmail=${founderEmail}`);
+	return protectedServerFetch(`/api/startups?founderEmail=${founderEmail}`);
 };
 
 // Get all Startup data for Browser Startup route
