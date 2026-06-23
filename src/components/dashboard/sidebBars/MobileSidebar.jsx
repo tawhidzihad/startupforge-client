@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import { Button, Drawer } from "@heroui/react";
+import { Avatar, Button, Drawer } from "@heroui/react";
 
 import { authClient } from "@/lib/auth-client";
 import SidebarLink from "@/UI/SidebarLink";
-import { House, LogOut, Menu, X } from "lucide-react";
+import { LogOut, Menu, X } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -63,19 +63,16 @@ export default function MobileSidebar({ navItems, user }) {
 									{/* User Info */}
 									<div className="mt-5 flex items-center gap-3">
 										<div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800">
-											{user?.image ? (
-												<Image
+											<Avatar>
+												<Avatar.Image
 													src={user?.image}
 													alt={user?.name}
-													width={1000}
-													height={1000}
-													className="h-full w-full object-cover"
+													referrerPolicy="no-referrer"
 												/>
-											) : (
-												<div className="flex h-full w-full items-center justify-center bg-linear-to-r from-indigo-500 to-violet-500 text-lg font-semibold text-white">
+												<Avatar.Fallback>
 													{user?.name?.charAt(0)?.toUpperCase()}
-												</div>
-											)}
+												</Avatar.Fallback>
+											</Avatar>
 										</div>
 
 										<div className="min-w-0">
@@ -111,26 +108,15 @@ export default function MobileSidebar({ navItems, user }) {
 							</Drawer.Body>
 
 							{/* Footer */}
-							<Drawer.Footer className="border-t">
-								<div className="w-full space-y-2">
-									<Link
-										href="/"
-										onClick={() => setOpen(false)}
-										className=" flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900"
-									>
-										<House size={18} />
-										Back To Home
-									</Link>
-
-									<button
-										onClick={handleLogOutButton}
-										type="button"
-										className="cursor-pointer flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-red-500 hover:bg-red-500/10"
-									>
-										<LogOut size={18} />
-										Logout
-									</button>
-								</div>
+							<Drawer.Footer>
+								<button
+									onClick={handleLogOutButton}
+									type="button"
+									className="cursor-pointer flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-red-500 hover:bg-red-500/10"
+								>
+									<LogOut size={18} />
+									Logout
+								</button>
 							</Drawer.Footer>
 						</Drawer.Dialog>
 					</Drawer.Content>

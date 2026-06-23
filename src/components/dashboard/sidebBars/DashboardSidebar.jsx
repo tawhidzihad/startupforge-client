@@ -2,6 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import SidebarLink from "@/UI/SidebarLink";
+import { Avatar } from "@heroui/react";
 import { House, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -42,29 +43,23 @@ export default function DashboardSidebar({ navItems, user }) {
 			<div className="border-b p-6">
 				<div className="flex items-center gap-3">
 					<div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800">
-						{user?.image ? (
-							<Image
+						<Avatar>
+							<Avatar.Image
 								src={user?.image}
 								alt={user?.name}
-								width={1000}
-								height={1000}
-								className="h-full w-full object-cover"
+								referrerPolicy="no-referrer"
 							/>
-						) : (
-							<div className="flex h-full w-full items-center justify-center bg-linear-to-r from-indigo-500 to-violet-500 text-lg font-semibold text-white">
+							<Avatar.Fallback>
 								{user?.name?.charAt(0)?.toUpperCase()}
-							</div>
-						)}
+							</Avatar.Fallback>
+						</Avatar>
 					</div>
 
 					<div className="min-w-0 flex-1">
 						<h3 className="truncate font-semibold">{user?.name}</h3>
-
 						<span className=" mt-1 inline-flex rounded-full bg-violet-500/10 px-2.5 py-1 text-xs font-medium text-violet-500">
 							{user?.role === "founder" && "Founder"}
-
 							{user?.role === "collaborator" && "Collaborator"}
-
 							{user?.role === "admin" && "Admin"}
 						</span>
 					</div>

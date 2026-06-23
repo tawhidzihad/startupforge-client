@@ -7,6 +7,7 @@ import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import NavButton from "@/UI/NavButton";
 import ThemeToggle from "@/UI/ThemeToggle";
+import { Avatar } from "@heroui/react";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -71,18 +72,16 @@ export default function Navbar() {
 							{/* User image */}
 							<div className="group relative">
 								<div className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-zinc-200 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800">
-									{user?.image ? (
-										<Image
-											src={user.image}
-											alt={user.name}
-											fill
-											className="object-cover"
+									<Avatar>
+										<Avatar.Image
+											src={user?.image}
+											alt={user?.name}
+											referrerPolicy="no-referrer"
 										/>
-									) : (
-										<div className="flex h-full w-full items-center justify-center bg-linear-to-r from-indigo-500 to-violet-500 text-lg font-bold text-white">
+										<Avatar.Fallback>
 											{user?.name?.charAt(0)?.toUpperCase()}
-										</div>
-									)}
+										</Avatar.Fallback>
+									</Avatar>
 								</div>
 
 								{/* Tooltip */}
