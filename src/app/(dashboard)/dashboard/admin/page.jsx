@@ -2,18 +2,19 @@ import DashboardChart from "@/components/dashboard/chartsCard/DashboardChart";
 import DashboardStatsCard from "@/components/dashboard/statsCard/DashboardStatsCard";
 import { getAllOpportunities } from "@/lib/fetchings/opportunities";
 import { getAllStartups } from "@/lib/fetchings/startups";
+import { getAllSubscriptions } from "@/lib/fetchings/subscriptions";
 import { getAllUsers } from "@/lib/fetchings/users";
 
 export default async function AdminDashboardPage() {
 	const users = await getAllUsers();
 	const startups = await getAllStartups();
 	const { pagination } = await getAllOpportunities({});
+	const data = await getAllSubscriptions();
 
-	/* Fake Stats */
 	const totalUsers = users.length;
 	const totalStartups = startups.length;
 	const totalOpportunities = pagination?.total;
-	const totalRevenue = 2450;
+	const totalRevenue = Number(data?.totalRevenue || 0).toFixed(2);
 
 	/* Stats Cards */
 	const adminStats = [
@@ -56,40 +57,7 @@ export default async function AdminDashboardPage() {
 	];
 
 	/* Revenue Line Chart Data */
-	const revenueData = [
-		{
-			month: "Jan",
-			revenue: 120,
-		},
-		{
-			month: "Feb",
-			revenue: 180,
-		},
-		{
-			month: "Mar",
-			revenue: 250,
-		},
-		{
-			month: "Apr",
-			revenue: 320,
-		},
-		{
-			month: "May",
-			revenue: 410,
-		},
-		{
-			month: "Jun",
-			revenue: 500,
-		},
-		{
-			month: "Jul",
-			revenue: 650,
-		},
-		{
-			month: "Aug",
-			revenue: 2450,
-		},
-	];
+	const revenueData = data?.monthlyRevenue || [];
 
 	return (
 		<div className="space-y-8">
