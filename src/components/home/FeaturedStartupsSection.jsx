@@ -64,11 +64,14 @@ export default function FeaturedStartupsSection({ startups = [] }) {
 					}}
 					className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
 				>
-					{startups.slice(0, 6).map((startup) => (
-						<motion.div key={startup._id} variants={fadeInUp}>
-							<StartupCard startup={startup} />
-						</motion.div>
-					))}
+					{startups
+						.slice(0, 6)
+						.reverse()
+						.map((startup) => (
+							<motion.div key={startup._id} variants={fadeInUp}>
+								<StartupCard startup={startup} />
+							</motion.div>
+						))}
 				</motion.div>
 			</div>
 		</section>

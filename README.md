@@ -111,7 +111,7 @@ The platform bridges the gap between startup founders and skilled professionals,
 ### Deployment
 
 - Vercel (Client)
-- Render / Node Server (Backend)
+- Vercel / Node Server (Backend)
 
 ---
 
@@ -275,7 +275,7 @@ This project is developed for educational and portfolio purposes.
 
 ### Developed By
 
-**Tawhid Zihad**
+**Md Tawhidul Islam Zihad**
 MERN Stack Developer
 
 Building innovative web applications with React, Next.js, Node.js, and MongoDB.
